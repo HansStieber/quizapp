@@ -19,35 +19,44 @@
         crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-light" onload="init()">
+<body onload="init()">
     <div class="container">
-    <div class="card quiz-card">
-        <div class="card-body">
+    <div class="card quiz-card bg-light">
+
+        <div class="card-body" id="startscreen">
+
+        </div>
+
+        <div class="card-body" id="endscreen">
+
+        </div>
+
+        <div class="card-body" id="question-body">
           <span class="card-title" id="question"></span>
 
-          <div class="card mb-2 quiz-answer bg-light" onclick="answer(answer_1)">
+          <div class="card mb-2 quiz-answer" onclick="answer('answer_1')">
             <div class="card-body" id="answer_1">
             </div>
           </div>
 
-          <div class="card mb-2 quiz-answer bg-light" onclick="answer(answer_2)">
+          <div class="card mb-2 quiz-answer" onclick="answer('answer_2')">
             <div class="card-body" id="answer_2">
             </div>
           </div>
 
-          <div class="card mb-2 quiz-answer bg-light" onclick="answer(answer_3)">
+          <div class="card mb-2 quiz-answer" onclick="answer('answer_3')">
             <div class="card-body" id="answer_3">
             </div>
           </div>
 
-          <div class="card mb-2 quiz-answer bg-light" onclick="answer(answer_4)">
+          <div class="card mb-2 quiz-answer" onclick="answer('answer_4')">
             <div class="card-body" id="answer_4">
             </div>
           </div>
 
           <div class="question-footer">
-            <span><b>1</b> von <b id="all-questions"></b></span>
-            <button class="btn btn-primary">Nächste Frage</button>
+            <span><b id="question-number"></b> von <b id="all-questions"></b></span>
+            <button class="btn btn-primary" id="next-button" onclick="nextQuestion()" disabled>Nächste Frage</button>
           </div>
 
         </div>

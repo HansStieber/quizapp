@@ -19,6 +19,7 @@ body {
     display: block;
     text-align: center;
     font-weight: 500;
+    margin-bottom: 30px !important;
 }
 
 .question-footer {
@@ -30,5 +31,9 @@ body {
 
 .quiz-answer:hover {
     cursor: pointer;
-    background-color: #e2efff !important;
+    background-color: #e2efff;
+}
+
+.bg-success, .bg-danger {
+    color: white;
 }
