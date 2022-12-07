@@ -42,29 +42,60 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let rightQuestions = 0;
+let AUDIO_SUCCESS = new Audio('audio/right.mp3');
+let AUDIO_FAIL = new Audio('audio/false.mp3');
 
-//Initialisiere nach laden des Bodys
 function init() {
     document.getElementById('all-questions').innerHTML = questions.length;
-
     showQuestion();
 }
 
 function showQuestion() {
-
-    if (currentQuestion >= questions.length) {
-        document.getElementById('endscreen').style = '';
-        document.getElementById('question-body').style = 'display: none;'
+    if (gameIsOver()) {
+        showEndscreen();
     } else {
-        let question = questions[currentQuestion];
-
-        document.getElementById('question-number').innerHTML = currentQuestion + 1;
-        document.getElementById('question').innerHTML = question['questions'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        hideEndscreen();
+        updateProgressBar();
+        updateToNextQuestion();
     }
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+function showEndscreen() {
+    document.getElementById('startscreen').style = 'display: none;';
+    document.getElementById('endscreen').style = '';
+    document.getElementById('question-body').style = 'display: none;';
+    document.getElementById('progress').style = 'display: none;';
+
+    document.getElementById('amount-questions').innerHTML = questions.length;
+    document.getElementById('amount-right-questions').innerHTML = rightQuestions;
+}
+
+function hideEndscreen() {
+    document.getElementById('endscreen').style = 'display: none';
+    document.getElementById('question-body').style = '';
+    document.getElementById('progress').style = '';
+}
+
+function updateProgressBar() {
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent}%`;
+    document.getElementById('progress-bar').style.width = `${percent}%`;
+}
+
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('question-number').innerHTML = currentQuestion + 1;
+    document.getElementById('question').innerHTML = question['questions'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
 function answer(selection) {
@@ -72,13 +103,20 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (selectedQuestionNumber == question['right_answer']) {
+    if (rightAnswerSelected(selectedQuestionNumber, question)) {
+        AUDIO_SUCCESS.play();
+        rightQuestions++;
         document.getElementById(selection).parentNode.classList.add('bg-success');
     } else {
+        AUDIO_FAIL.play();
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next-button').disabled = false;
+}
+
+function rightAnswerSelected(selectedQuestionNumber, question) {
+    return selectedQuestionNumber == question['right_answer'];
 }
 
 function nextQuestion() {
@@ -99,4 +137,10 @@ function resetAnswerButtons() {
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function restart() {
+    currentQuestion = 0;
+    rightQuestions = 0;
+    init();
 }
