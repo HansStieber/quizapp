@@ -52,6 +52,13 @@ function init() {
     showQuestion();
 }
 
+function start() {
+    document.getElementById('startscreen').style = 'display: none;';
+    document.getElementById('endscreen').style = 'display: none;';
+    document.getElementById('question-body').classList.remove('hide');
+    document.getElementById('progress').style = '';
+}
+
 function showQuestion() {
     if (gameIsOver()) {
         showEndscreen();
@@ -115,19 +122,39 @@ function answer(selection) {
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next-button').disabled = false;
+
+    disableClickAnswer();
 }
 
 function rightAnswerSelected(selectedQuestionNumber, question) {
     return selectedQuestionNumber == question['right_answer']
 }
 
+function disableClickAnswer() {
+    document.getElementById('answer_1').setAttribute('onclick', '');
+    document.getElementById('answer_2').setAttribute('onclick', '');
+    document.getElementById('answer_3').setAttribute('onclick', '');
+    document.getElementById('answer_4').setAttribute('onclick', '');
+}
+
+
 function nextQuestion() {
     currentQuestion++;
+
+    enableClickAnswer();
+    
     showQuestion();
 
     document.getElementById('next-button').disabled = true;
 
     resetAnswerButtons();
+}
+
+function enableClickAnswer() {
+    document.getElementById('answer_1').setAttribute("onclick", "answer('answer_1');")
+    document.getElementById('answer_2').setAttribute("onclick", "answer('answer_2');")
+    document.getElementById('answer_3').setAttribute("onclick", "answer('answer_3');")
+    document.getElementById('answer_4').setAttribute("onclick", "answer('answer_4');")
 }
 
 function resetAnswerButtons() {

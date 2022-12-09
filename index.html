@@ -23,15 +23,24 @@
 
 <body onload="init()">
   <div class="container">
-    <div class="card quiz-card bg-light">
 
-      <div class="progress" id="progress">
+    
+    <div class="card quiz-card">
+
+      <div class="head">
+        <img src="img/logo.png">
+      </div>
+
+      <div class="progress" id="progress" style="display: none;">
         <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 20%;"
           aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="progress-bar"></div>
       </div>
 
-      <div class="card-body no-padding" id="startscreen" style="display: none">
-
+      <div class="card-body no-padding" id="startscreen">
+        <div class="start-img">
+          <span>Willkommen zum ultimativen <br> HTML Quiz</span>
+        </div>
+        <div class="start-button-container"><button type="button" class="btn btn-primary" onclick="start()">Quiz starten</button></div>
       </div>
 
       <div class="card-body no-padding" id="endscreen" style="display: none">
@@ -48,26 +57,26 @@
         </div>
       </div>
 
-      <div class="card-body" id="question-body">
+      <div class="card-body hide" id="question-body">
         <span class="card-title" id="question"></span>
 
-        <div class="card mb-2 quiz-answer" onclick="answer('answer_1')">
-          <div class="card-body" id="answer_1">
+        <div class="card mb-2 quiz-answer">
+          <div class="card-body" id="answer_1" onclick="answer('answer_1')">
           </div>
         </div>
 
-        <div class="card mb-2 quiz-answer" onclick="answer('answer_2')">
-          <div class="card-body" id="answer_2">
+        <div class="card mb-2 quiz-answer">
+          <div class="card-body" id="answer_2" onclick="answer('answer_2')">
           </div>
         </div>
 
-        <div class="card mb-2 quiz-answer" onclick="answer('answer_3')">
-          <div class="card-body" id="answer_3">
+        <div class="card mb-2 quiz-answer">
+          <div class="card-body" id="answer_3" onclick="answer('answer_3')">
           </div>
         </div>
 
-        <div class="card mb-2 quiz-answer" onclick="answer('answer_4')">
-          <div class="card-body" id="answer_4">
+        <div class="card mb-2 quiz-answer">
+          <div class="card-body" id="answer_4" onclick="answer('answer_4')">
           </div>
         </div>
 

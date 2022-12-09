@@ -2,6 +2,10 @@ body {
     font-family: 'Rubik' !important;
 }
 
+.hide {
+    display: none;
+}
+
 .no-padding {
     padding: 0 !important;
 }
@@ -11,13 +15,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 !important;
 }
 
 .quiz-card {
     width: 30rem;
     padding: 20px;
-    background-color: rgb(255, 255, 255) !important;
-    height: 480px !important;
+    background-color: rgb(212, 212, 212) !important;
+    height: 680px !important;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    margin: var(--bs-card-spacer-y) var(--bs-card-spacer-x) 30px var(--bs-card-spacer-x);
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    background-color: darkgrey;
+    border-radius: 5px;
+}
+
+.start-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 380px;
+    margin: 0 var(--bs-card-spacer-x) var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    background-image: url(img/startscreen.png);
+    background-size: 110%;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.start-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 var(--bs-card-spacer-x);
 }
 
 .progress {
