@@ -90,6 +90,8 @@ body {
     font-weight: bold;
     background-color: rgba(255, 176, 86, 0.516);
     border-radius: 240px;
+    max-width: 460px;
+    margin: 0 auto;
 }
 
 .img-end {
@@ -99,4 +101,25 @@ body {
 
 .score {
     margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        margin: 0 !important;
+        max-width: unset !important;
+    }
+
+    .head {
+        margin: 0 0 30px 0;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .start-img {
+        background-position-y: center;
+        margin: 0 0 var(--bs-card-spacer-y) 0;
+    }
 }
